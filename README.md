@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/gustavfors/microblog.svg?style=svg)](https://app.circleci.com/pipelines/github/gustavfors/microblog)
+
 Microblog
 ===================
 
