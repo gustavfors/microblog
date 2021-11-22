@@ -2,4 +2,4 @@
 
 source .venv/bin/activate
 
-cd volume && make test
+cd volume && python3 -m py.test -c pytest.ini tests/unit
