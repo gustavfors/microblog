@@ -28,7 +28,9 @@ services:
 
     test:
         build:
-            context: "./docker/Dockerfile_test"
+            # context: "./docker/Dockerfile_test"
+            context: .
+            dockerfile: ./docker/Dockerfile_test
         image: microblog-test:latest
         volumes:
             - ./:/home/microblog/volume
