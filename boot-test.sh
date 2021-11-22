@@ -1,5 +1,5 @@
 #!/bin/sh
 
-source .venv/bin/activate
+. .venv/bin/activate
 
 cd volume && make test
