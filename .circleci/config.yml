@@ -2,31 +2,29 @@ version: 2
 jobs:
     test:
         machine:
-            image: ubuntu-1604:202007-01
-
+            image: "ubuntu-1604:202007-01"
         steps:
             - checkout
             - run:
                   name: Run test
                   command: docker-compose up test
-
     publish:
         machine:
-            image: ubuntu-1604:202007-01
-
+            image: "ubuntu-1604:202007-01"
         steps:
             - checkout
             - run:
                   name: Publish docker image
-                  command: |
-                      echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-                      docker build -f docker/Dockerfile_prod -t gufo19/microblog .
-                      docker push gufo19/microblog:latest
+                  command: >
+                      echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME"
+                      --password-stdin
 
+                      docker build -f docker/Dockerfile_prod -t gufo19/microblog .
+
+                      docker push gufo19/microblog:latest
     ansibleAppServer:
         machine:
-            image: ubuntu-1604:202007-01
-
+            image: "ubuntu-1604:202007-01"
         steps:
             - checkout
             - run:
@@ -35,13 +33,13 @@ jobs:
                       python3 -m venv venv
                       . venv/bin/activate
                       make install-deploy
-
             - run:
                   name: Run appServer playbook
-                  command: |
+                  command: >
                       . venv/bin/activate
-                      ansible-playbook ansible/gather_vm_instances.yml ansible/appServer.yml
 
+                      ansible-playbook ansible/gather_vm_instances.yml
+                      ansible/appServer.yml
 workflows:
     version: 2
     build-master:
