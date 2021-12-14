@@ -24,6 +24,9 @@ jobs:
                       docker push gufo19/microblog:latest
 
     ansibleAppServer:
+        machine:
+            image: ubuntu-1604:202007-01
+
         steps:
             - checkout
             - run:
