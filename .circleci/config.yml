@@ -40,7 +40,7 @@ jobs:
                   name: Run appServer playbook
                   command: |
                       . venv/bin/activate
-                      ansible/ansible-playbook ansible/gather_vm_instances.yml ansible/appServer.yml
+                      ansible-playbook ansible/gather_vm_instances.yml ansible/appServer.yml
 
 workflows:
     version: 2
