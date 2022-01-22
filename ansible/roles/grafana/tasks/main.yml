@@ -68,7 +68,9 @@
     state: present
     commit_message: Updated by ansible
     overwrite: yes
-    path: https://raw.githubusercontent.com/percona/grafana-dashboards/pmm-1.x/dashboards/MySQL_Overview.json
+    # path: https://raw.githubusercontent.com/percona/grafana-dashboards/pmm-1.x/dashboards/MySQL_Overview.json
+    dashboard_id: 6239
+    dashboard_revision: 1
 
 - name: copy nginx dashboard
   copy:
