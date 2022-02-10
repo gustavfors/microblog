@@ -1,6 +1,6 @@
 ---
-# - name: create new mysql user
-#   shell: sudo docker exec -it dbserver mysql -uroot -p'secret' -e "CREATE USER 'exporter5'@'{{ groups.database[0] }}' IDENTIFIED BY 'secret' WITH MAX_USER_CONNECTIONS 3;GRANT PROCESS,REPLICATION CLIENT,SELECT ON *.* TO 'exporter5'@'{{ groups.database[0] }}';GRANT SELECT ON performance_schema.* TO 'exporter5'@'{{ groups.database[0] }}';FLUSH PRIVILEGES;"
+- name: create new mysql user
+  shell: sudo docker exec -it dbserver mysql -uroot -p'secret' -e "CREATE USER 'exporter5'@'{{ groups.database[0] }}' IDENTIFIED BY 'secret' WITH MAX_USER_CONNECTIONS 3;GRANT PROCESS,REPLICATION CLIENT,SELECT ON *.* TO 'exporter5'@'{{ groups.database[0] }}';GRANT SELECT ON performance_schema.* TO 'exporter5'@'{{ groups.database[0] }}';FLUSH PRIVILEGES;"
 
 - name: start and create mysqld-exporter
   docker_container:
