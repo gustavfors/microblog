@@ -44,8 +44,8 @@ jobs:
             cd ansible
             ansible-playbook -vvv gather_vm_instances.yml appServer.yml
   snyk:
-    docker:
-      - image: circleci/python:3.8
+    machine:
+      image: "ubuntu-1604:202007-01"
     steps:
       - checkout
       - run:
