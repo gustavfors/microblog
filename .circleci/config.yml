@@ -55,7 +55,9 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             make install
-      - run: echo "source ~/repo/venv/bin/activate" >> $BASH_ENV # här gör vi så att så att CircleCi automatisk laddar venv och då kollar Snyk vad vi har installerat i den.
+            make install-deploy
+            pip install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
+      - run: echo "source venv/bin/activate" >> $BASH_ENV # här gör vi så att så att CircleCi automatisk laddar venv och då kollar Snyk vad vi har installerat i den.
       - snyk/scan
 workflows:
   version: 2
