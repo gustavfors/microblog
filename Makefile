@@ -153,6 +153,7 @@ exec-tests: test-unit test-integration
 test: validate exec-tests
 	${py} -m coverage report  --rcfile=.coveragerc
 	$(MAKE) clean-cov
+	$(MAKE) bandit-check
 
 
 
@@ -220,3 +221,8 @@ install-deploy:
 .PHONY: test-docker
 test-docker:
 	docker-compose up test
+
+## target: bandit-check                    - Run tests and display detailed code coverage with html
+.PHONY: bandit-check
+bandit-check:
+	bandit -r app

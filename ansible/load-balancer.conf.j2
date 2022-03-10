@@ -10,10 +10,15 @@ http {
     # This server accepts all traffic to port 80 and passes it to the upstream. 
     # Notice that the upstream name and the proxy_pass need to match.
 
-
    server {
       listen 80;
       server_name {{ domain_name }} www.{{ domain_name }};
+
+      add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+      server_tokens off;
+      add_header X-Frame-Options "SAMEORIGIN";
+      add_header X-Content-Type-Options nosniff;
+      add_header Content-Security-Policy "default-src 'self'; script-src *.cloudflare.com gufo.tech; style-src gufo.tech *.cloudflare.com; font-src gufo.tech *.cloudflare.com; img-src *.gravatar.com;" always;
 
       location / {
          return 301 https://$server_name$request_uri;
@@ -28,6 +33,12 @@ http {
    server {
       listen 443;
       server_name www.{{ domain_name }};
+
+      add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+      server_tokens off;
+      add_header X-Frame-Options "SAMEORIGIN";
+      add_header X-Content-Type-Options nosniff;
+      add_header Content-Security-Policy "default-src 'self'; script-src *.cloudflare.com gufo.tech; style-src gufo.tech *.cloudflare.com; font-src gufo.tech *.cloudflare.com; img-src *.gravatar.com;" always;
 
       ssl on;
       ssl_certificate /etc/letsencrypt/live/{{ domain_name }}/cert.pem;
@@ -47,6 +58,12 @@ http {
       ssl_certificate /etc/letsencrypt/live/{{ domain_name }}/cert.pem;
       ssl_certificate_key /etc/letsencrypt/live/{{ domain_name }}/privkey.pem;
       ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+
+      add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+      server_tokens off;
+      add_header X-Frame-Options "SAMEORIGIN";
+      add_header X-Content-Type-Options nosniff;
+      add_header Content-Security-Policy "default-src 'self'; script-src *.cloudflare.com gufo.tech; style-src gufo.tech *.cloudflare.com; font-src gufo.tech *.cloudflare.com; img-src *.gravatar.com;" always;
 
       location /grafana/ {
          proxy_pass http://{{ groups['monitoring'][0] }}:3000/;
