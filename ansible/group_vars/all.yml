@@ -2,13 +2,13 @@
 # Here you can add variables that will be available for all hosts.
 region: northeurope
 resource_group:
-    DIDA-GUFO19-DV1617-H21-LP2
-    # Change me
+  DIDA-GUFO19-DV1617-H21-LP2
+  # Change me
 domain_name: gufo.tech # Change me
 
 root_user: azureuser
 
 vmtags:
-    StudentId: "gufo19" # Change me
+  StudentId: "gufo19" # Change me
 
 pub_ssh_key_location: "/home/gustav/.ssh/ansible.pub" # Change me, your local ssh key!
