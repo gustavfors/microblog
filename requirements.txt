@@ -47,3 +47,4 @@ wrapt==1.13.3
 WTForms==3.0.0
 zipp==3.6.0
 prometheus-flask-exporter==0.18.5
+setuptools>=70.0.0 # not directly required, pinned by Snyk to avoid a vulnerability
